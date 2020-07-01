@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flash_chat/components/RoundedButton.dart';
 
 class RegistrationScreen extends StatefulWidget {
+  static String id = 'registration_screen';
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -16,9 +18,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: 'logo',
+              child: Container(
+                height: 200.0,
+                child: Image.asset('images/logo.png'),
+              ),
             ),
             SizedBox(
               height: 48.0,
@@ -27,7 +32,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onChanged: (value) {
                 //Do something with the user input.
               },
+              style: TextStyle(color: Colors.black87),
               decoration: InputDecoration(
+                hintStyle: TextStyle(color: Colors.black87),
                 hintText: 'Enter your email',
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -47,11 +54,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 8.0,
             ),
-            TextField(
+            TextFormField(
               onChanged: (value) {
                 //Do something with the user input.
               },
+              validator: (String value) {
+                if (value.trim().isEmpty) {
+                  return "Password is Empty";
+                }
+              },
+              obscureText: true,
+              style: TextStyle(color: Colors.black87),
               decoration: InputDecoration(
+                hintStyle: TextStyle(color: Colors.black87),
                 hintText: 'Enter your password',
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -71,25 +86,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 24.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Implement registration functionality.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
+            RoundedButton(
+              Titile: 'Sign Up',
+              onPressed: () {},
+              Colour: Colors.lightBlueAccent,
+            )
           ],
         ),
       ),
